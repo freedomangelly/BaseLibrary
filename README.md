@@ -8,7 +8,7 @@ https://raw.githubusercontent.com/freedomangelly/BaseLibrary/master
 dependencies {
     implementation 'com.liuy.maven.baselibrary:baselibrary:0.0.0.0'
 }
-倒入位置可以参考我的简书https://www.jianshu.com/p/1d42f9db2a8d
+倒入方法可以参考我的简书https://www.jianshu.com/p/1d42f9db2a8d
 
 V.0.0.0.0
 
@@ -145,15 +145,15 @@ PermissionHelper.requestPermission(Activity,请求码，请求权限[])
 使用自定义布局文件，方便快速的开发
 使用例子
 AlertDialog quickDialog = new AlertDialog.Builder(UserVCardActivity.this)
-                            .setContentView(R.layout.dialog_title)//布局文件
-                            .setText(R.id.tv_dialog_title_title, getString(R.string.str_message))//标题
-                            .setText(R.id.tv_dialog_title_single, getString(R.string.str_openCard_success))//显示内容
-                            .setViewVisable(R.id.ll_mix_dialog_bottom, View.GONE)//底部布局因此
-                            .setViewVisable(R.id.ll_mix_dialog_bottom_one, View.VISIBLE)
-                            .setOnClickListener(R.id.btn_dialog_title_center, new View.OnClickListener() {//监听事件
-                                @Override
+                            .setContentView(R.layout.dialog_title)//布局文件                           
+                            .setText(R.id.tv_dialog_title_title, getString(R.string.str_message))//标题                           
+                            .setText(R.id.tv_dialog_title_single, getString(R.string.str_openCard_success))//显示内容                  
+                            .setViewVisable(R.id.ll_mix_dialog_bottom, View.GONE)//底部布局因此                            
+                            .setViewVisable(R.id.ll_mix_dialog_bottom_one, View.VISIBLE)                            
+                            .setOnClickListener(R.id.btn_dialog_title_center, new View.OnClickListener() {//监听事件                         
+                                @Override       
                                 public void onClick(View v) {
-                                    quickDialog.dismiss();
+                                    quickDialog.dismiss();   
                                     finish();
                                 }
                             })
