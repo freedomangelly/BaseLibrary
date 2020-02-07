@@ -11,7 +11,9 @@ dependencies {
 倒入位置可以参考我的简书https://www.jianshu.com/p/1d42f9db2a8d
 
 V.0.0.0.0
+
 1.异常机制
+
 ExceptionCrashHandle 全局异常类 当应用发生异常会在此handle种处理
 使用方法，在applicaton的onCreate中调用
 ExceptionCrashHandle.getInstance().init(this);
@@ -19,12 +21,17 @@ ExceptionCrashHandle.getInstance().init(this);
 this.setUncaughtExceptionHandler(ExceptionCrashHandle.getInstance());
 
 2.IOC机制
+
 可以向butternikfe一样使用，不过是利用反射机制
 包含方法
+
 2.1.初始化组件
+
 @ViewById(R.id.recycler_view)
 private WrapRecyclerView mRecyclerView;
+
 2.2.点击事件
+
     @OnClick(R.id.home_rb)
     private void homeRbClick(View view) {
         if (mHomeFragment == null) {
@@ -33,13 +40,17 @@ private WrapRecyclerView mRecyclerView;
         mFragmentHelper.switchFragment(mHomeFragment);
     }
 2.3.检测网络
+
 @CheckNet(R.id.recycler_view)
 再上面click事件同时加上注释，会为点击事件添加网络检测
+
 2.4.权限检测
+
 @PermissionSuccess(requestCode = CALL_PHONE_REQUEST_CODE)//权限申请成功返回
 @PermissionFail(requestCode = CALL_PHONE_REQUEST_CODE)//权限申请失败返回
 
 3.权限检测
+
 PermissionHelper 权限工具类
 PermissionHelper.with(Activity)
                     .requestCode(请求码)
@@ -58,10 +69,12 @@ PermissionHelper.requestPermission(Activity,请求码，请求权限[])
    之后会返回2.4中对应的注释方法。
    
    4.网络的使用
+   
    此框架中使用了OkHttp与retrofit（我们有测试）作为引擎，也可以自己定义网络引擎,包含了get,post,delete,update,download的请求方式
    4.1HttpUtils为网络引擎的使用类，在Application中调用HttpUtils.init(new OkHttpEngine(new AuthorizationInterceptor()));初始化网络引擎    AuthorizationInterceptor为自定义拦截器，如果不需要可以设置null
    
    4.2EngineCallBack默认的网络回调接口
+   
         //请求前传递的参数
         public void onPreExecute(Context context, Map params) {}
         //请求失败返回结果
@@ -70,6 +83,7 @@ PermissionHelper.requestPermission(Activity,请求码，请求权限[])
         public void onSuccess(int code,String result) {}
         
    4.3 DownloadListener
+   
       DownloadListener为下载用的回调函数方，包含方法如下
       void onPreExecute(Context context, Map<String, Object> params);
     /**
@@ -90,13 +104,16 @@ PermissionHelper.requestPermission(Activity,请求码，请求权限[])
     void loadfail(Object e);
         
    4.4.请求的使用
+   
    HttpUtils.with(上下文).url(请求连接).请求方式.execute(new EngineCallBack());
    请求方式：get() post() delete() update() download()
    
    4.5下载的使用
+   
     HttpUtils.with(上下文).url(请求连接).download().downPath().execute(new DownloadListener())
     
   5.数据库的使用
+  
   使用数据库需要一个数据库的对象类，数据库会通过反射，动态获取这个类与数据库中的字段相对应
   数据库类的初始化
   IDaoSoupport<CacheData> dataDaoSupport = DaoSupportFactory.getFactory().getDao(数据库对象类);
@@ -124,6 +141,7 @@ PermissionHelper.requestPermission(Activity,请求码，请求权限[])
     }
     
 6.万能自定义Dialog的使用
+
 使用自定义布局文件，方便快速的开发
 使用例子
 AlertDialog quickDialog = new AlertDialog.Builder(UserVCardActivity.this)
